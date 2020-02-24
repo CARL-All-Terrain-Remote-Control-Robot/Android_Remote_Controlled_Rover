@@ -108,24 +108,22 @@
         android:id="@+id/layout_joystick"
         android:layout_width="@dimen/controller_size"
         android:layout_height="@dimen/controller_size"
-        android:layout_above="@+id/linearLayout1"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="@dimen/controller_margin"
+        android:layout_marginTop="32dp"
         android:layout_marginRight="@dimen/controller_margin"
-        android:layout_marginBottom="160dp"
         android:background="@drawable/image_button"></RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/layout_joystick2"
         android:layout_width="@dimen/controller_size"
         android:layout_height="@dimen/controller_size"
-        android:layout_above="@+id/linearLayout1"
         android:layout_alignRight="@+id/linearLayout1"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="@dimen/controller_margin"
-        android:layout_marginTop="@dimen/controller_margin"
+        android:layout_marginTop="32dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="160dp"
         android:background="@drawable/image_button"></RelativeLayout>
 
 </RelativeLayout>
