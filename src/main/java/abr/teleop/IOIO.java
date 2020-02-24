@@ -98,14 +98,14 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
 	static final int DEFAULT_PWM = 1500, MAX_PWM = 2000, MIN_PWM = 1000, PWM_STEP=10, K1 = 3, K2=1, K3=10;
 
 	RelativeLayout layoutPreview;
-	TextView txtspeed_motor, txtIP, sonarView;
+	TextView txtspeed_motor, txtIP;//, sonarView;
 	Button buttonUp, buttonUpLeft, buttonUpRight, buttonDown
 			, buttonDownLeft, buttonDownRight, buttonRight, buttonLeft;
 
 	int speed_motor = 0;
 	int pwm_pan, pwm_tilt;
 	int pwm_speed, pwm_steering;
-	float sonar_dis1, sonar_dis2, sonar_dis3;
+	//float sonar_dis1, sonar_dis2, sonar_dis3;
 	
 	Camera mCamera;
 	Camera.Parameters params;
@@ -181,7 +181,7 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
 		txtIP = (TextView)findViewById(R.id.txtIP);
 		txtIP.setText(getIP());
 
-		sonarView = (TextView) findViewById(R.id.sonarView);
+		//sonarView = (TextView) findViewById(R.id.sonarView);
 
 		mPreview = (SurfaceView)findViewById(R.id.preview);
         mPreview.getHolder().addCallback(this);
@@ -331,7 +331,7 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
 			heading = (heading*5 + fixWraparound(values[0]+12))/6; //add 12 to make up for declination in Irvine, average out from previous 2 for smoothness
 //			Log.i(TAG_IOIO,"heading:"+heading);
 		}
-		sonarView.setText(sonar_dis1 + "," + sonar_dis2 + "," +sonar_dis3);
+		//sonarView.setText(sonar_dis1 + "," + sonar_dis2 + "," +sonar_dis3);
 	}
 
 	//Called whenever activity resumes from pause
@@ -763,7 +763,7 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
 	}
 	
 	public String getIP() {
-		WifiManager wifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+		WifiManager wifi = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         Method[] wmMethods = wifi.getClass().getDeclaredMethods();
         for(Method method: wmMethods){
 	        if(method.getName().equals("isWifiApEnabled")) {
@@ -838,7 +838,7 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
 	class Looper extends BaseIOIOLooper 
 	{
 		PwmOutput speed, steering, pan, tilt;
-		PulseInput sonar1,sonar2,sonar3;
+		//PulseInput sonar1,sonar2,sonar3;
 
 //		int pwm_left_motor, pwm_right_motor;
 
@@ -860,9 +860,9 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
         	pan.setPulseWidth(pwm_pan);
         	tilt.setPulseWidth(pwm_tilt);
 
-			sonar1 = ioio_.openPulseInput(12, PulseInput.PulseMode.POSITIVE);
-			sonar2 = ioio_.openPulseInput(13, PulseInput.PulseMode.POSITIVE);
-			sonar3 = ioio_.openPulseInput(14, PulseInput.PulseMode.POSITIVE);
+			//sonar1 = ioio_.openPulseInput(12, PulseInput.PulseMode.POSITIVE);
+			//sonar2 = ioio_.openPulseInput(13, PulseInput.PulseMode.POSITIVE);
+			//sonar3 = ioio_.openPulseInput(14, PulseInput.PulseMode.POSITIVE);
         	
         	runOnUiThread(new Runnable() {
 				public void run() {
@@ -892,7 +892,7 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
         	steering.setPulseWidth(pwm_steering);
         	pan.setPulseWidth(pwm_pan);
         	tilt.setPulseWidth(pwm_tilt);
-
+			/*
 			float reading = sonar1.getDuration();
 			sonar_dis1 = (float) (reading*1000.0*1000.0/147.0);
 
@@ -901,6 +901,8 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
 
 			reading = sonar3.getDuration();
 			sonar_dis3 = (float) (reading*1000.0*1000.0/147.0);
+
+			 */
         }
         
 		public void disconnected() {
