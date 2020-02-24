@@ -379,7 +379,7 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
 				}
 			} else if(command == IOIOService.MESSAGE_DISCONNECTED) {
 				Toast.makeText(getApplicationContext()
-						, "Server down, willbe restart service in 1 seconds"
+						, "Server down, will restart service in 1 seconds"
 						, Toast.LENGTH_SHORT).show();
 				ioio.killTask();
 				new Handler().postDelayed(new Runnable() {
@@ -476,7 +476,7 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
 							, "Take Picture"
 							, Toast.LENGTH_SHORT).show();
 			    	startTime = (int) (System.currentTimeMillis() / 1000);
-	    	        mCamera.takePicture(null, null, null, IOIO.this);
+	    	        mCamera.takePicture(null, null, null, IOIO.this);	//takePicture takes picture
 		    	}
 			} else if(command == IOIOService.MESSAGE_FOCUS) {
 				mCamera.autoFocus(null);

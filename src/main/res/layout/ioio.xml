@@ -16,14 +16,6 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/sonarView"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="1000,1000,1000"
-            android:textColor="#ca2559"
-            android:textSize="@dimen/data_text_size" />
-
-        <TextView
             android:id="@+id/txtIP"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
@@ -76,8 +68,7 @@
                 android:id="@+id/buttonUpRight"
                 android:layout_width="@dimen/direction_longest"
                 android:layout_height="@dimen/direction_longest"
-                android:background="@drawable/checkbox_upright"
-                android:enabled="false" />
+                android:background="@drawable/checkbox_upright" />
         </LinearLayout>
 
         <LinearLayout
