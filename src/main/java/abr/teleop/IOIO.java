@@ -379,7 +379,7 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
 				}
 			} else if(command == IOIOService.MESSAGE_DISCONNECTED) {
 				Toast.makeText(getApplicationContext()
-						, "Server down, willbe restart service in 1 seconds"
+						, "Server down, will restart service in 1 seconds"
 						, Toast.LENGTH_SHORT).show();
 				ioio.killTask();
 				new Handler().postDelayed(new Runnable() {
@@ -439,20 +439,20 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
 
 						File[] externalDirs = getExternalFilesDirs(null);
 						if(externalDirs.length > 1) {
-							jpgFile = new File(externalDirs[1].getAbsolutePath() + "/rescuerobotics/"+time+"/pics");
+							jpgFile = new File(externalDirs[1].getAbsolutePath() + "/ceviche/"+time+"/pics");
 							if (!jpgFile.exists()) {
 								jpgFile.mkdirs();
 							}
-							rrFile = new File(externalDirs[1].getAbsolutePath() + "/rescuerobotics/"+time);
+							rrFile = new File(externalDirs[1].getAbsolutePath() + "/ceviche/"+time);
 							if (!rrFile.exists()) {
 								rrFile.mkdirs();
 							}
 						} else {
-							jpgFile = new File(externalDirs[0].getAbsolutePath() + "/rescuerobotics/"+time+"/pics");
+							jpgFile = new File(externalDirs[0].getAbsolutePath() + "/ceviche/"+time+"/pics");
 							if (!jpgFile.exists()) {
 								jpgFile.mkdirs();
 							}
-							rrFile = new File(externalDirs[0].getAbsolutePath() + "/rescuerobotics/"+time);
+							rrFile = new File(externalDirs[0].getAbsolutePath() + "/ceviche/"+time);
 							if (!rrFile.exists()) {
 								rrFile.mkdirs();
 							}
@@ -476,7 +476,7 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
 							, "Take Picture"
 							, Toast.LENGTH_SHORT).show();
 			    	startTime = (int) (System.currentTimeMillis() / 1000);
-	    	        mCamera.takePicture(null, null, null, IOIO.this);
+	    	        mCamera.takePicture(null, null, null, IOIO.this);	//takePicture takes picture
 		    	}
 			} else if(command == IOIOService.MESSAGE_FOCUS) {
 				mCamera.autoFocus(null);
