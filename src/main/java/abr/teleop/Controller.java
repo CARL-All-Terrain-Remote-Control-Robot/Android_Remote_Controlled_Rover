@@ -498,12 +498,14 @@ public class Controller extends Activity{
 										}								    		
 						    		} else if(buff.length > 20) {
 										if (debug == true) {	//if debug true will process image
+//											bitmap = BitmapFactory.decodeByteArray(buff , 0, buff.length);
+//											Utils.bitmapToMat(bitmap, received_image);
+//											received_image = imgProcess(received_image);
+//											Imgproc.cvtColor(received_image, received_image, Imgproc.COLOR_GRAY2RGBA, 4);
+//											bitmap = Bitmap.createBitmap(received_image.cols(), received_image.rows(), Bitmap.Config.ARGB_8888);
+//											Utils.matToBitmap(received_image, bitmap);
+//											imageView1.setImageBitmap(bitmap);
 											bitmap = BitmapFactory.decodeByteArray(buff , 0, buff.length);
-											Utils.bitmapToMat(bitmap, received_image);
-											received_image = imgProcess(received_image);
-											Imgproc.cvtColor(received_image, received_image, Imgproc.COLOR_GRAY2RGBA, 4);
-											bitmap = Bitmap.createBitmap(received_image.cols(), received_image.rows(), Bitmap.Config.ARGB_8888);
-											Utils.matToBitmap(received_image, bitmap);
 											imageView1.setImageBitmap(bitmap);
 										} else {
 											bitmap = BitmapFactory.decodeByteArray(buff , 0, buff.length);

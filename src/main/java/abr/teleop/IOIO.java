@@ -439,20 +439,20 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
 
 						File[] externalDirs = getExternalFilesDirs(null);
 						if(externalDirs.length > 1) {
-							jpgFile = new File(externalDirs[1].getAbsolutePath() + "/rescuerobotics/"+time+"/pics");
+							jpgFile = new File(externalDirs[1].getAbsolutePath() + "/ceviche/"+time+"/pics");
 							if (!jpgFile.exists()) {
 								jpgFile.mkdirs();
 							}
-							rrFile = new File(externalDirs[1].getAbsolutePath() + "/rescuerobotics/"+time);
+							rrFile = new File(externalDirs[1].getAbsolutePath() + "/ceviche/"+time);
 							if (!rrFile.exists()) {
 								rrFile.mkdirs();
 							}
 						} else {
-							jpgFile = new File(externalDirs[0].getAbsolutePath() + "/rescuerobotics/"+time+"/pics");
+							jpgFile = new File(externalDirs[0].getAbsolutePath() + "/ceviche/"+time+"/pics");
 							if (!jpgFile.exists()) {
 								jpgFile.mkdirs();
 							}
-							rrFile = new File(externalDirs[0].getAbsolutePath() + "/rescuerobotics/"+time);
+							rrFile = new File(externalDirs[0].getAbsolutePath() + "/ceviche/"+time);
 							if (!rrFile.exists()) {
 								rrFile.mkdirs();
 							}
