@@ -30,7 +30,7 @@ public class Main extends Activity {
 	Spinner spinnerSize;
 	SeekBar barQuality;
 	Dialog dialogConnect;
-	Button btnController, btnIOIO;
+	Button btnIOIO,btnController;
 	Dialog dialog;
 	
 	TextView txtQuality;
@@ -59,6 +59,16 @@ public class Main extends Activity {
         		startActivity(intent);
         	}
         });
+
+
+		btnController = (Button)findViewById(R.id.btnController);
+		btnController.setVisibility(View.INVISIBLE);
+		btnController.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(Main.this, ControllerConnection.class);
+				startActivity(intent);
+			}
+		});
         
         buttonFadeIn();
         
