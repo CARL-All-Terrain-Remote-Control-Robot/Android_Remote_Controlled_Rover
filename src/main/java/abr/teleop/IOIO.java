@@ -177,7 +177,7 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
         buttonLeft = (Button)findViewById(R.id.buttonLeft);
 
         txtspeed_motor = (TextView)findViewById(R.id.txtSpeed);
-        
+
 		txtIP = (TextView)findViewById(R.id.txtIP);
 		txtIP.setText(getIP());
 
@@ -467,6 +467,10 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
 						fosRR.write(b);
 					} catch (IOException e) {
 						Log.e(TAG_IOIO, e.toString());
+						Toast.makeText(getApplicationContext()
+                                , "dir error"
+                                , Toast.LENGTH_SHORT).show();
+
 					}
 				}
 			} else if(command == IOIOService.MESSAGE_SNAP) {
@@ -655,7 +659,7 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
 	}
 	
 	public void onPreviewFrame(final byte[] arg0, Camera arg1) {
-		txtspeed_motor.setText("speed_motor " + String.valueOf(pwm_speed)+","+String.valueOf(pwm_steering));
+		txtspeed_motor.setText("speed_motor " + String.valueOf(pwm_speed) + "," + String.valueOf(pwm_steering));
 		if (!initialed) {
 			w = mCamera.getParameters().getPreviewSize().width;
 			h = mCamera.getParameters().getPreviewSize().height;
@@ -679,33 +683,44 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
 			}
 		}
 
-		if(logging && logging_time%logging_interval == 0) {
-			logging_time = (logging_time + 1) % logging_interval;
-			String mill_timestamp = System.currentTimeMillis()+"";
-			String info = mill_timestamp + "," + curr_loc.getLatitude() + "," + curr_loc.getLongitude() + ","
-					+ mAcc[0] + "," + mAcc[1] + "," + mAcc[2] + ","
-					+ mGyro[0] + "," + mGyro[1] + "," + mGyro[2] + ","
-					+ mGeo[0] + "," + mGeo[1] + "," + mGeo[2] + ","
-					+ mGrav[0] + "," + mGrav[1] + "," + mGrav[2] + ","
-					+ heading + "," + pwm_speed + "," + pwm_steering + "\n";
-			try {
-				byte[] b = info.getBytes();
-				fosRR.write(b);
-			} catch (IOException e) {
-				Log.e(TAG_IOIO, e.toString());
-			}
+		if (logging) {
+			Toast.makeText(getApplicationContext()
+					, "Logging is on"
+					, Toast.LENGTH_SHORT).show();
+			if (logging_time % logging_interval == 0) {
+				Toast.makeText(getApplicationContext()
+						, "Logging on, interval hit"
+						, Toast.LENGTH_SHORT).show();
+				String mill_timestamp = System.currentTimeMillis() + "";
+				String info = mill_timestamp + "," + curr_loc.getLatitude() + "," + curr_loc.getLongitude() + ","
+						+ mAcc[0] + "," + mAcc[1] + "," + mAcc[2] + ","
+						+ mGyro[0] + "," + mGyro[1] + "," + mGyro[2] + ","
+						+ mGeo[0] + "," + mGeo[1] + "," + mGeo[2] + ","
+						+ mGrav[0] + "," + mGrav[1] + "," + mGrav[2] + ","
+						+ heading + "," + pwm_speed + "," + pwm_steering + "\n";
+				try {
+					byte[] b = info.getBytes();
+					fosRR.write(b);
+				} catch (IOException e) {
+					Log.e(TAG_IOIO, e.toString());
+				}
 
-			//open file and stream for saving frames as jpgs
-			try {
-				File file = new File(jpgFile, mill_timestamp + ".jpg");
-				file.createNewFile();
-				FileOutputStream fos = new FileOutputStream(file);
-				byte[] b = info.getBytes();
-				fos.write(bos.toByteArray());
-				fos.close();
-			} catch (Exception e) {
-				Log.e("app.main", "Couldn't write to SD");
+				//open file and stream for saving frames as jpgs
+				try {
+					File file = new File(jpgFile, mill_timestamp + ".jpg");
+					file.createNewFile();
+					FileOutputStream fos = new FileOutputStream(file);
+					byte[] b = info.getBytes();
+					fos.write(bos.toByteArray());
+					fos.close();
+				} catch (Exception e) {
+					Log.e("app.main", "Couldn't write to SD");
+				}
 			}
+			logging_time += 1;
+			Toast.makeText(getApplicationContext()
+					, "Logging interval incremented"
+					, Toast.LENGTH_SHORT).show();
 		}
 	}
 	
