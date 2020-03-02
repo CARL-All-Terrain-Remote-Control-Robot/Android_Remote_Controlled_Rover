@@ -177,7 +177,7 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
         buttonLeft = (Button)findViewById(R.id.buttonLeft);
 
         txtspeed_motor = (TextView)findViewById(R.id.txtSpeed);
-        
+
 		txtIP = (TextView)findViewById(R.id.txtIP);
 		txtIP.setText(getIP());
 
@@ -457,9 +457,6 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
 								rrFile.mkdirs();
 							}
 						}
-						Toast.makeText(getApplicationContext()
-								, "Created Files"
-								, Toast.LENGTH_SHORT).show();
 						recordingFile = new File(rrFile, time+".csv");
 
 						recordingFile.createNewFile();
@@ -469,10 +466,11 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
 						byte[] b = labels.getBytes();
 						fosRR.write(b);
 					} catch (IOException e) {
-						Toast.makeText(getApplicationContext()
-								, "Caught"
-								, Toast.LENGTH_SHORT).show();
 						Log.e(TAG_IOIO, e.toString());
+						Toast.makeText(getApplicationContext()
+                                , "dir error"
+                                , Toast.LENGTH_SHORT).show();
+
 					}
 				}
 			} else if(command == IOIOService.MESSAGE_SNAP) {
@@ -661,8 +659,7 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
 	}
 	
 	public void onPreviewFrame(final byte[] arg0, Camera arg1) {
-		txtspeed_motor.setText("speed_motor " + String.valueOf(pwm_speed)+","+String.valueOf(pwm_steering));
-
+		txtspeed_motor.setText("speed_motor " + String.valueOf(pwm_speed) + "," + String.valueOf(pwm_steering));
 		if (!initialed) {
 			w = mCamera.getParameters().getPreviewSize().width;
 			h = mCamera.getParameters().getPreviewSize().height;
@@ -686,12 +683,14 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
 			}
 		}
 
-		if(logging) {
+		if (logging) {
+			Toast.makeText(getApplicationContext()
+					, "Logging is on"
+					, Toast.LENGTH_SHORT).show();
 			if (logging_time % logging_interval == 0) {
-//				Toast.makeText(getApplicationContext()
-//						, "In logging"
-//						, Toast.LENGTH_SHORT).show();
-				logging_time = (logging_time + 1) % logging_interval;
+				Toast.makeText(getApplicationContext()
+						, "Logging on, interval hit"
+						, Toast.LENGTH_SHORT).show();
 				String mill_timestamp = System.currentTimeMillis() + "";
 				String info = mill_timestamp + "," + curr_loc.getLatitude() + "," + curr_loc.getLongitude() + ","
 						+ mAcc[0] + "," + mAcc[1] + "," + mAcc[2] + ","
@@ -717,15 +716,12 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
 				} catch (Exception e) {
 					Log.e("app.main", "Couldn't write to SD");
 				}
-			} else {
-				//logging_time = 0;
-//				Toast.makeText(getApplicationContext()
-//						, "Not logging interval"
-//						, Toast.LENGTH_SHORT).show();
 			}
-			logging_time = (logging_time + 1) % logging_interval;
+			logging_time += 1;
+			Toast.makeText(getApplicationContext()
+					, "Logging interval incremented"
+					, Toast.LENGTH_SHORT).show();
 		}
-
 	}
 	
 	public void decodeYUV420(int[] rgb, byte[] yuv420, int width, int height) {
