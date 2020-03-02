@@ -20,14 +20,19 @@
 
     <LinearLayout
         android:id="@+id/linearLayout1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_width="614dp"
+        android:layout_height="68dp"
         android:layout_alignParentRight="true"
-        android:layout_margin="@dimen/command_button_layout_margin"
-        android:orientation="horizontal" >
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/command_button_layout_margin"
+        android:layout_marginLeft="@dimen/command_button_layout_margin"
+        android:layout_marginTop="@dimen/command_button_layout_margin"
+        android:layout_marginEnd="@dimen/command_button_layout_margin"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="17dp"
+        android:orientation="horizontal">
 
-        <EditText
+        <!--<EditText
             android:id="@+id/position"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
@@ -49,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/command_button_margin"
             android:layout_weight="1"
-            android:text="Dstep" />
+            android:text="Dstep" /> -->
 
         <Button
             android:id="@+id/debug"
@@ -70,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/command_button_margin"
-            android:text="SOTP" />
+            android:text="STOP" />
 
         <CheckBox
             android:id="@+id/cbLog"
@@ -110,7 +115,7 @@
         android:layout_height="@dimen/controller_size"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="42dp"
         android:layout_marginTop="32dp"
         android:layout_marginRight="@dimen/controller_margin"
         android:background="@drawable/image_button"></RelativeLayout>
@@ -122,7 +127,7 @@
         android:layout_alignRight="@+id/linearLayout1"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="@dimen/controller_margin"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="39dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/image_button"></RelativeLayout>
 
