@@ -139,7 +139,7 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
 	File recordingFile;
 	FileOutputStream fosRR;
 	Boolean logging;
-	int logging_interval = 20;
+	int logging_interval = 50;
 	int logging_time = 0;
 
 	//location variables
@@ -684,13 +684,13 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
 		}
 
 		if (logging) {
-			Toast.makeText(getApplicationContext()
-					, "Logging is on"
-					, Toast.LENGTH_SHORT).show();
+//			Toast.makeText(getApplicationContext()
+//					, "Logging is on"
+//					, Toast.LENGTH_SHORT).show();
 			if (logging_time % logging_interval == 0) {
-				Toast.makeText(getApplicationContext()
-						, "Logging on, interval hit"
-						, Toast.LENGTH_SHORT).show();
+//				Toast.makeText(getApplicationContext()
+//						, "Logging on, interval hit"
+//						, Toast.LENGTH_SHORT).show();
 				String mill_timestamp = System.currentTimeMillis() + "";
 				String info = mill_timestamp + "," + curr_loc.getLatitude() + "," + curr_loc.getLongitude() + ","
 						+ mAcc[0] + "," + mAcc[1] + "," + mAcc[2] + ","
@@ -718,9 +718,9 @@ public class IOIO extends IOIOActivity implements Callback, SensorEventListener,
 				}
 			}
 			logging_time += 1;
-			Toast.makeText(getApplicationContext()
-					, "Logging interval incremented"
-					, Toast.LENGTH_SHORT).show();
+//			Toast.makeText(getApplicationContext()
+//					, "Logging interval incremented"
+//					, Toast.LENGTH_SHORT).show();
 		}
 	}
 	

@@ -188,7 +188,7 @@ public class IOIOService extends AsyncTask<Void, Void, Void> {
 				Log.w(TAG, e.toString());
 				mHandler.obtainMessage(MESSAGE_CLOSE).sendToTarget();
 				break;
-			} catch (SocketTimeoutException e) { 
+			} catch (SocketTimeoutException e) { //catches here alot "read timd out"
 				Log.w(TAG, e.toString());
 			} catch (IOException e) { 
 				Log.w(TAG, e.toString());
